@@ -74,8 +74,6 @@ class VectorQuantiser(nn.Module):
         # reshape back to match original input shape
         z_q = rearrange(z_q, 'b h w c -> b c h w').contiguous()
         # count
-        import pdb
-        pdb.set_trace()
         avg_probs = torch.mean(encodings, dim=0)
         perplexity = torch.exp(-torch.sum(avg_probs * torch.log(avg_probs + 1e-10)))
         min_encodings = encodings
